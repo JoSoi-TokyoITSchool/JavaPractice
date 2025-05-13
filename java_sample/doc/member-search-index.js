@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"test1","c":"JavaDocSample","l":"getFieldA()"},{"p":"test1","c":"JavaDocSample","l":"JavaDocSample()","u":"%3Cinit%3E()"},{"p":"test1","c":"JavaDocSample","l":"setFieldA(int)"},{"p":"test1","c":"JavaDocSample","l":"show()"}];updateSearchResults();
