@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>リンク遷移前画面</div>
+		<!-- http://localhost:7777/shop/after 
+		//타임리프를 쓰면 어플리케이션 설정을 바꿔도 알아서 Context Path이후로 자동URL Mapping-->
+		<a th:href="@{/after}">リンク式でのリンク</a>
+		<a th:href="@{/detail}">detail</a>
+		
+		<!-- http://localhost:7777/after-->
+		<a href="/after">通常のリンク</a>
+
+</body>
+</html>

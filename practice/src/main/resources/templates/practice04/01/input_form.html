@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Spring 練習問題 基礎編 Practice4-01</h1>
+	<a>GETとPOSTの違い</a>
+	<hr>
+	<a>GET送信:今の気分はどの色？</a>
+		<form th:action="@{/send/get_method}" method="get" >
+			<input type="radio" name="color" value="赤">赤
+			<input type="radio" name="color" value="オレンジ">オレンジ
+			<input type="radio" name="color" value="黄">黄
+			<input type="radio" name="color" value="緑">緑
+			<input type="radio" name="color" value="緑">緑
+			<input type="radio" name="color" value="紫">紫
+			<input type="submit" value="GETで送信">
+		</form>
+		
+	<hr>
+	<a>POST送信:今の気分はどの色？</a>
+		<form th:action="@{/send/post_method}" method="post" >
+			<input type="radio" name="color" value="赤">赤
+			<input type="radio" name="color" value="オレンジ">オレンジ
+			<input type="radio" name="color" value="黄">黄
+			<input type="radio" name="color" value="緑">緑
+			<input type="radio" name="color" value="緑">緑
+			<input type="radio" name="color" value="紫">紫
+			<input type="submit" value="POSTで送信">
+		</form>
+	<hr>
+</body>
+</html>

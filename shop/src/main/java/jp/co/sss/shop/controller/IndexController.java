@@ -15,4 +15,30 @@ public class IndexController {
 		System.out.println("詳細ページを表示します。");
 		return "detail";
 	}
+
+	@RequestMapping("/before") //コンテキストパス以後
+	public String before() {
+		return "before";
+	}
+
+	@RequestMapping("after")
+	public String after() {
+		return "after";
+	}
+
+	@RequestMapping("/transition")
+	public String sampleTransition() {
+		return "sampleTransition";
+	}
+
+	@RequestMapping("/index_f")
+	public String indexForward() {
+		return "index";
+	}
+
+	@RequestMapping("/index_r")
+	public String indexRedirect() {
+		return "redirect:/";
+	}
+
 }

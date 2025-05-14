@@ -6,7 +6,7 @@
 </head>
 <body>
 	
-	<h1>detail テストページ<h1>
+	<h1>detail テストページ</h1>
 	<div>
 		<form name="profile">
  		 <input type="text" name="id"> <!-- 입력란 -->
@@ -18,6 +18,61 @@
   		<input type="submit" value="Submit"> <!-- 서버 제출 버튼 -->
 		</form>
 	</div>	
+	
+	<ul>
+    <li>산술 연산
+        <ul>
+            <li>10 + 2 = <span th:text="10 + 2"></span></li>
+            <li>10 % 2 == 0 = <span th:text="10 % 2 == 0"></span></li>
+        </ul>
+    </li>
+    <li>비교 연산
+		<!-- eq : equal ( = ), ne : not equal ( <> ), lt : little ( < )
+			le - little or equal ( <= ), gt - greater ( > ), 
+			ge : greater or equal ( >= )	-->
+        <ul>
+            <li>1 > 10 = <span th:text="1 &gt; 10"></span></li>
+            <li>1 gt 10 = <span th:text="1 gt 10"></span></li>
+            <li>1 >= 10 = <span th:text="1 >= 10"></span></li>
+            <li>1 ge 10 = <span th:text="1 ge 10"></span></li>
+            <li>1 == 10 = <span th:text="1 == 10"></span></li>
+            <li>1 != 10 = <span th:text="1 != 10"></span></li>
+        </ul>
+    </li>
+    <li>조건식
+        <ul>
+            <li>(10 % 2 == 0)? '짝수':'홀수' = <span th:text="(10 % 2 == 0)? '짝수':'홀수'"></span></li>
+            <li><span th:text="'true'" th:if="${10 % 2 == 0}"></span></li>
+			<li><span th:text="'false'" th:unless="${10 % 2 != 0}"></span></li>
+        </ul>
+    </li>
+    <li>Elvis 연산자
+        <ul>
+            <li>${data}?: '데이터가 없습니다.' = <span th:text="${data}?: '데이터가 없습니다.'"></span></li>
+            <li>${nullData}?: '데이터가 없습니다.' = <span th:text="${nullData}?: '데이터가 없습니다.'"></span></li>
+        </ul>
+    </li>
+    <li>No-Operation
+        <ul>
+            <li>${data}?: _ = <span th:text="${data}?: _">데이터가 없습니다.</
+                span>
+            </li>
+            <li>${nullData}?: _ = <span th:text="${nullData}?: _">데이터가 없습니다.</span></li>
+        </ul>
+    </li>
+</ul>
+
+<table border="1">
+    <tr>
+        <th>username</th>
+        <th>age</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.username}">username</td>
+        <td th:text="${user.age}">0</td>
+    </tr>
+</table>
+
 		
 </body>
 </html>

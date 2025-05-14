@@ -11,4 +11,9 @@ public class Practice0201Controller {
 		return "opening";
 	}
 
+	@RequestMapping("/")
+	public String view2() {
+		return "index";
+	}
+
 }
