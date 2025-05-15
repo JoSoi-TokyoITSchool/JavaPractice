@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.hover:hover {
+text-decoration: underline;  /* 마우스를 올리면 밑줄 생성 */
+color: #000000;              /* 글자색을 검은색으로 */
+}
+
+.hover:active {
+  color: #00FF00;              /* 클릭 시 글자색을 초록색으로 */
+}
+</style>
+
+</head>
+<body>
+
+	<div>ログイン</div>  
+    <div th:text="${userId}" class="hover"></div> 
+    
+    <form method="post" th:action="@{/doLoginOnRequest}">  
+	    ユーザ ID:<input type="number" name="userId" />  
+	    パスワード:<input type="password" name="password" />  
+      	<input type="submit" value="ログイン" />  
+    </form>  
+
+</body>
+</html>

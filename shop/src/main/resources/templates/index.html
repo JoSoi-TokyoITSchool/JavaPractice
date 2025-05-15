@@ -10,6 +10,10 @@
 		<h1>ショップページ<h1>
 	</div> 
 		<h2>hello world!<h2>
+			
+	<div th:text="${session.userId}"></div>		
+	<a th:href="@{/loginOnSession}">ログイン</a>
+	<a th:href="@{/logout}">ログアウト</a>
 
 </body>
 </html>
