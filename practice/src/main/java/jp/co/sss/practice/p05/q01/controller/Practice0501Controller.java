@@ -11,14 +11,16 @@ import jp.co.sss.practice.p05.q01.form.BmiForm;
 public class Practice0501Controller {
 
 	@GetMapping("/bmi/input")
-	public String p5_01() {
+	public String bmiInput() {
 		return "practice05/01/bmi_input";
 	}
 
 	@PostMapping("/bmi/result")
-	public String bmi(BmiForm bmiForm, Model model) {
-		//BMI=体重(kg)÷(身長(cm)/100)2 
-
+	public String bmiResult(BmiForm bmiForm, Model model) {
+		double heightInMeter = bmiForm.getHeight() / 100.0;
+		double bmi = bmiForm.getWeight() / (heightInMeter * heightInMeter);
+		bmiForm.setBmi(bmi);
+		model.addAttribute("bmiForm", bmiForm);
 		return "practice05/01/bmi_result";
 	}
 
