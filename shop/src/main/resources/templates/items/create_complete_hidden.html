@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>商品の新規登録完了</div> 
+    <p><h2>登録が完了しました</h2></p> 
+    <br/> 
+    <a th:href="@{/items/create/input/hidden}" th:text="入力画面へ戻ります"></a> 
+    <br/>
+    <div>商品一覧</div> 
+	<table> 
+	<tr> 
+		<th>商品番号</th> 
+		<th>商品名</th> 
+		<th>価格</th> 
+	</tr> 
+	<tr th:each="item: ${items}"> 
+		<td th:text="${item.id}"></td> 
+		<td th:text="${item.name}"></td> 
+		<td th:text="${item.price}"></td> 
+	</tr> 
+	</table> 
+    
+</body>
+</html>

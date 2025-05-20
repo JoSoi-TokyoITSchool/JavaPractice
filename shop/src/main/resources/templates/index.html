@@ -24,8 +24,15 @@
 		<li><a th:href="@{/items/findByPrice/100}">価格検索(100)</a></li>
 		<li><a th:href="@{/items/findAllAndSetDropdown}">選択コントロール</a></li> 
 		<li><a th:href="@{/items/create/input}">登録</a></li> 
+		<li><a th:href="@{/items/update/input/1}">更新(1)</a></li> 
+		<li><a th:href="@{/items/delete/input}">削除</a></li> 
+		<li><a th:href="@{/items/create/input/hidden}">隠しコントロールによる値渡し</a></li> 
+		<li><a th:href="@{/items/findItemAndCategory}">外部参照検索</a></li> 
+		<li><a th:href="@{/items/searchWithNamedQuery/1}">NamedQueryによる検索</a></li> 
+		<li><a th:href="@{/items/searchWithQuery/1}">Queryによる検索</a></li> 
+		<li><a th:href="@{/items/searchWithQuery}">Queryの活用例 サブクエリ</a></li> 
+		<li><a th:href="@{/loginWithValidation}">入力チェック</a></li> 
 	 </ul>
-	<a th:href="@{/items/create/input}">登録</a>
 
 </body>
 </html>

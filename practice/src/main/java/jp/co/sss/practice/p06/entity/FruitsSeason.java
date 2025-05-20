@@ -13,16 +13,38 @@ import jakarta.persistence.Table;
 public class FruitsSeason {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceGeneratorName")
-	//@SequenceGenerator(sequenceName = "SequenceName", name = "SequenceGeneratorName", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_fruit_gen")
-	@SequenceGenerator(sequenceName = "seq_fruit", name = "seq_fruit_gen", allocationSize = 1)
-	private Integer fruit_id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_fruits_season_gen")
+	@SequenceGenerator(name = "seq_fruits_season_gen", sequenceName = "seq_fruits_season", allocationSize = 1)
+	private Integer fruitId;
 
 	@Column
-	private Integer fruit_name;
+	private String fruitName;
 
 	@Column
-	private Integer season_month;
+	private Integer seasonMonth;
+
+	public Integer getFruitId() {
+		return fruitId;
+	}
+
+	public void setFruitId(Integer fruitId) {
+		this.fruitId = fruitId;
+	}
+
+	public String getFruitName() {
+		return fruitName;
+	}
+
+	public void setFruitName(String fruitName) {
+		this.fruitName = fruitName;
+	}
+
+	public Integer getSeasonMonth() {
+		return seasonMonth;
+	}
+
+	public void setSeasonMonth(Integer seasonMonth) {
+		this.seasonMonth = seasonMonth;
+	}
 
 }

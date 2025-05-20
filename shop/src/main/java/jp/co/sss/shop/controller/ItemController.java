@@ -74,4 +74,63 @@ public class ItemController {
 		return "items/item";
 	}
 
+	@RequestMapping("/items/update/input/{id}")
+	public String updateInput(@PathVariable Integer id, Model model) {
+		Item item = repository.getReferenceById(id);
+		ItemBean itemBean = new ItemBean();
+		BeanUtils.copyProperties(item, itemBean);
+		model.addAttribute("item", itemBean);
+		return "items/update_input";
+
+	}
+
+	@RequestMapping(path = "/items/update/complete/{id}", method = RequestMethod.POST)
+	public String updateComplete(@PathVariable Integer id, ItemForm form, Model model) {
+		Item item = repository.getReferenceById(id);
+		BeanUtils.copyProperties(form, item, "id");
+		item = repository.save(item);
+		ItemBean itemBean = new ItemBean();
+		BeanUtils.copyProperties(item, itemBean);
+		model.addAttribute("item", itemBean);
+		return "items/item";
+	}
+
+	@RequestMapping("/items/delete/input")
+	public String deleteInput(Model model) {
+		model.addAttribute("items", repository.findAll());
+		return "items/delete_input";
+	}
+
+	@RequestMapping(path = "/items/delete/complete", method = RequestMethod.POST)
+	public String deleteCompelete(ItemForm form) {
+		repository.deleteById(form.getId());
+		return "redirect:/items/findAll";
+	}
+
+	//登録画面表示 
+	@RequestMapping("items/create/input/hidden")
+	public String itemInputHidden() {
+		//入力画面遷移 
+		return "items/create_input_hidden";
+	}
+
+	//確認画面表示 
+	@RequestMapping("items/create/check/hidden")
+	public String itemCheckHidden(ItemForm form, Model model) {
+		model.addAttribute("item", form);
+		//確認画面遷移  
+		return "items/create_check_hidden";
+	}
+
+	//登録完了画面表示 
+	@RequestMapping("items/create/complete/hidden")
+	public String itemCompleteHidden(ItemForm form, Model model) {
+		Item item = new Item();
+		BeanUtils.copyProperties(form, item);
+		item = repository.save(item);
+		model.addAttribute("items", repository.findAll());
+		//完了画面遷移 
+		return "items/create_complete_hidden";
+	}
+
 }
