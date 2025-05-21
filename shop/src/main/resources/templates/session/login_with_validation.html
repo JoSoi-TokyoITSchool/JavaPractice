@@ -5,17 +5,18 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
 	<div>ログイン</div>  
-
 	<form method="post" th:action="@{/loginWithValidation}" th:object="${loginFormWithValidation}"> 
+	
 	ユーザ ID:<input type="text" th:field="*{userId}" /> 
 	<span th:errors="*{userId}"></span><br> 
-	<!-- 999以下の値にしてください。
-	0から16の間のサイズにしてください。-->
 	
 	パスワード:<input type="password" th:field="*{password}" /> 
 	<span th:errors="*{password}"></span><br> 
+	
 	<input type="submit" value="ログイン" /> 
+	
 	</form> 
 
 </body>

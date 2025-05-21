@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
 <h1>Spring 練習問題 基礎編 Practice6-04</h1>
 
 データベース操作 条件検索と並べ替え結果
@@ -14,20 +15,16 @@
 検索条件:<span>＜3月＞</span>
 <table>
 <tr>
-<td>ID</td>
-<td>名前</td>
+	<td>ID</td>
+	<td>名前</td>
 </tr>
 <tr>
-<td>1</td>
-<td>とちおとめ</td>
-</tr>
-<tr>
-<td>2</td>
-<td>さがほのか</td>
+	<td th:text="${fruits.fruitId}">1</td>
+	<td th:text="${fruits.seasonMonth}">1</td>
 </tr>
 </table>
 </p>
-<a href="/fruits/search/input">「旬の季節」選択に戻る</a>
+<a th;href="@{/fruits/search/input}">「旬の季節」選択に戻る</a>
 
 
 </body>
