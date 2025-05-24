@@ -11,4 +11,6 @@ import jp.co.sss.practice.p06.entity.FruitsSeason;
 public interface FruitsSeasonRepository extends JpaRepository<FruitsSeason, Integer> {
 	List<FruitsSeason> findAllByOrderBySeasonMonthAsc();
 
+	List<FruitsSeason> findAllByOrderByFruitIdAsc();
+
 }

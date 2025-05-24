@@ -17,10 +17,12 @@
 <tr>
 	<td>ID</td>
 	<td>名前</td>
+	<td>旬の季節</td>
 </tr>
-<tr>
-	<td th:text="${fruits.fruitId}">1</td>
-	<td th:text="${fruits.seasonMonth}">1</td>
+<tr th:each="fruit: ${fruits}">
+	<td th:text="${fruit.fruitId}">1</td>
+	<td th:text="${fruit.fruitName}">1</td>
+	<td th:text="${fruit.seasonMonth}">1</td>
 </tr>
 </table>
 </p>

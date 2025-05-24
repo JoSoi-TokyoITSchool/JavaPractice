@@ -11,8 +11,9 @@ public class Practice0502Controller {
 
 	@GetMapping("/numguess/start")
 	public String start(HttpSession session) {
-		Integer hitNumberInteger = (int) (Math.floor(Math.random() * 9) + 1);
-		session.setAttribute("hitNum", hitNumberInteger);
+		Integer hitNumber = (int) (Math.floor(Math.random() * 9) + 1);
+		session.setAttribute("hitNum", hitNumber);
+		System.out.println(hitNumber);
 		return "practice05/02/numguess_start";
 	}
 
