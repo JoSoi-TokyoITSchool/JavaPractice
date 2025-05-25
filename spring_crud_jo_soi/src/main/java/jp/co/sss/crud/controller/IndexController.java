@@ -3,9 +3,9 @@ package jp.co.sss.crud.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpSession;
 import jp.co.sss.crud.bean.EmployeeBean;
@@ -22,13 +22,13 @@ public class IndexController {
 	@Autowired
 	HttpSession session;
 
-	@RequestMapping(path = "/", method = RequestMethod.GET)
+	@GetMapping("/")
 	public String index(@ModelAttribute LoginForm loginForm) {
 		session.invalidate();
 		return "index";
 	}
 
-	@RequestMapping(path = "/login", method = RequestMethod.POST)
+	@PostMapping("/login")
 	public String login(@ModelAttribute LoginForm loginForm, HttpSession session, Model model) {
 		int empId = loginForm.getEmpId();
 		String empPass = loginForm.getEmpPass();
@@ -50,7 +50,7 @@ public class IndexController {
 
 	}
 
-	@RequestMapping(path = "/logout", method = RequestMethod.GET)
+	@GetMapping("/logout")
 	public String logout() {
 		// セッションの破棄
 		session.invalidate();

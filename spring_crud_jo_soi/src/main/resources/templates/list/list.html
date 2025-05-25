@@ -9,28 +9,31 @@
 <body class="admin user_list">
 	<h3>社員一覧画面</h3>
 	<!-- セッション中にユーザ情報が存在する場合のみ以下の処理を実行する。 -->
+	<!-- 세션 중에 유저 정보가 존재하는 경우만 이하의 처리를 실행한다. -->
 	<!-- なお、セッション中のユーザ情報がない（null）の場合、-->
+	<!--또한, 세션중의 유저 정보가 없는(null)의 경우, -->
 	<!-- フィルターの処理により、当該Thymeleaf処理完了後にログイン画面にリダイレクトする。 -->
+	<!-- 필터 처리로 인해 해당 Thymeleaf 처리 완료 후 로그인 화면으로 리다이렉트 한다. -->
 	<div class="regist_link">
 		<a th:href="@{/regist/input}">新規社員登録</a>
 	</div>
 
-	<!-- ***検索結果が０件の場合*** -->
+	<!-- ***検索結果が０件の場合*** 검색결과가 0건인 경우 시작-->
 	<!-- ***falseを書き換え、表示内容を記述すること*** -->
-	<th:block th:if="false">
+	<th:block th:if="${#lists.isEmpty(lists)}">
 		<div class="message">
-			<!--以下に該当する社員が存在しないときのメッセージを記述する -->
-			<p></p>
+			<!--以下に該当する社員が存在しないときのメッセージを記述する-->
+			<p>該当する社員が存在しません。</p>
 			<!--以下に一覧表示に戻るリンクを記述する -->
-			<p></p>
+			<p><a href="@{/list}">一覧表示に戻る</a></p>
 		</div>
 	</th:block>
-	<!-- ***検索結果が０件の場合 ここまで*** -->
+	<!-- ***検索結果が０件の場合 ここまで*** 검색결과가 0건인 경우 여기까지-->
 
-	<!-- ***検索結果がある場合*** -->
-	<!-- Employeeテーブルからclass名を指定すること。 -->
+	<!-- ***検索結果がある場合*** 검색결과가 있는 경우-->
+	<!-- Employeeテーブルからclass名を指定すること。 Employee데이터에서 class명을 지정할 것-->
 	<!-- ***trueを書き換えること*** -->
-	<table class="list_table" th:if="true">
+	<table class="list_table" th:unless="${#lists.isEmpty(lists)}">
 		<tr>
 			<th>社員ID</th>
 			<th>社員名</th>
@@ -45,10 +48,11 @@
 		<tr th:each="list: ${lists}">
 			<td th:text="${list.empId}"></td>
 			<td th:text="${list.empName}"></td>
-			<td th:text="${list.gender}"></td>
+			<!--条件演算子-->
+			<td th:text="${list.gender == 1 ? '男性' : '女性'}"></td>
 			<td th:text="${list.address}"></td>
-			<td th:text="${list.birthday}"></td>
-			<td th:text="${list.authority}"></td>
+			<td th:text="${#dates.format(list.birthday,'yyyy/MM/dd')}"></td>
+			<td th:text="${list.authority == 1? '一般' : '管理者'}"></td>
 			<td th:text="${list.department.deptName}"></td>
 		</tr>
 		<!-- ***####を書き換え、社員情報を全件出力する ここまで*** -->
