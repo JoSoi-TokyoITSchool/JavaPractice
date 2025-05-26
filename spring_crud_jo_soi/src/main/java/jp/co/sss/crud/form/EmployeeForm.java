@@ -7,23 +7,60 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class EmployeeForm {
+
 	/** 社員ID */
 	private Integer empId;
 
 	/** パスワード */
+	@NotBlank
+	@Size(max = 16)
 	private String empPass;
+	/*
+	1.비밀번호 미입력시 
+	1-1.암호를 입력하십시오
+	1-2.패스워드는 16문자 이내로 입력해주세요
+	
+	2.비밀번호 소수점입력시
+	2-1.비밀번호는 정수값으로 
+	
+	3.비밀번호가 16자 이상인 경우
+	3-1.암호는 16자를 넘지 않아야합니다
+	*/
 
 	/** 社員名 */
+	@NotBlank
+	@Size(max = 30)
 	private String empName;
+	/*
+	1.사원이름 미입력시
+	1-1.직원 이름을 입력하십시오
+	1-2.사원명은 30문자 내외로 입력해주세요
+	*/
 
 	/** 性別 */
 	private Integer gender;
 
 	/** 住所 */
+	@NotBlank
+	@Size(max = 60)
 	private String address;
+	/*
+	1.주소 미입력시
+	1-1."주소를 입력하십시오."
+	1-2.“주소는 60문자 이내로 입력해주세요”
+	*/
 
 	/** 生年月日 */
+	@NotNull
 	private Date birthday;
+	/*
+	 1.생년월일 미입력시
+	
+	1-1. "생년월일을 입력하십시오."
+	
+	2.생년월일을 올바른 형식"2000/01/01"이 아닌"2000-01-01"로 입력한 경우
+	2-1. "올바른 날짜를 입력하십시오."
+	*/
 
 	/** 権限 */
 	private Integer authority;

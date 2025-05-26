@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.sss.crud.repository.EmployeeRepository;
 
@@ -39,10 +38,16 @@ public class ListController {
 	 * @param model 検索結果を渡すモデルオブジェクト 검색 결과를 전달할 모델 객체
 	 * @return 社員一覧画面のパス 직원 목록 화면의 경로
 	 */
-	@GetMapping("/list/empName")
-	public String searchByEmpName(@RequestParam("empName") String empName, Model model) {
-		/* ブラウザで /list/empName?empName=◯◯ がリクエストされると、クエリパラメータempNameの値がメソッド引数 empNameに格納される
-		브라우저에서 /list/empName?empName=◯◯ 요청이 들어오면, 쿼리 파라미터 empName 값을 메서드 매개변수 empName에 저장*/
+	//	@GetMapping("/list/empName")
+	//	public String searchByEmpName(@RequestParam("empName") String empName, Model model) {
+	//		/* ブラウザで /list/empName?empName=◯◯ がリクエストされると、クエリパラメータempNameの値がメソッド引数 empNameに格納される
+	//		브라우저에서 /list/empName?empName=◯◯ 요청이 들어오면, 쿼리 파라미터 empName 값을 메서드 매개변수 empName에 저장*/
+	//		model.addAttribute("lists", employeeRepository.findByEmpNameContaining(empName));
+	//		return "list/list";
+	//	}
+
+	@GetMapping("/list/{empName}")
+	public String searchByEmpName(String empName, Model model) {
 		model.addAttribute("lists", employeeRepository.findByEmpNameContaining(empName));
 		return "list/list";
 	}

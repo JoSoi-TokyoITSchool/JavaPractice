@@ -4,11 +4,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.persistence.EntityManager;
+import jakarta.validation.Valid;
 import jp.co.sss.crud.entity.Department;
 import jp.co.sss.crud.entity.Employee;
 import jp.co.sss.crud.form.EmployeeForm;
@@ -40,18 +42,31 @@ public class RegistrationController {
 	 * 入力内容を確認画面へ送る 
 	 * 입력한 내용을 확인 화면으로 넘김
 	 */
+	//	@PostMapping("/regist/update")
+	//	public String registUpdate(@Valid @ModelAttribute EmployeeForm empForm, BindingResult result, Model model) {
+	//		if (result.hasErrors()) {
+	//			model.addAttribute("empForm", empForm);
+	//			return "regist/regist_input"; // 에러 발생 시 입력 화면으로 되돌림
+	//		}
+	//		model.addAttribute("empForm", empForm);
+	//		return "regist/regist_check";
+	//	}
+
 	@PostMapping("/regist/update")
-	public String registUpdate(@ModelAttribute EmployeeForm empForm, Model model) {
+	public String registUpdate(@Valid @ModelAttribute EmployeeForm empForm, BindingResult result, Model model) {
+		// 로그로 에러 확인
+		if (result.hasErrors()) {
+			System.out.println("💥 검증 오류 발생!");
+			result.getFieldErrors().forEach(error -> {
+				System.out.println("필드: " + error.getField());
+				System.out.println("메시지: " + error.getDefaultMessage());
+			});
+
+			model.addAttribute("empForm", empForm);
+			return "regist/regist_input";
+		}
+
 		model.addAttribute("empForm", empForm);
-
-		// EntityManager를 이용해서 NamedQuery 실행
-		Department dept = entityManager
-				.createQuery("SELECT d FROM Department d WHERE d.deptId = :id", Department.class)
-				.setParameter("id", empForm.getDeptId())
-				.getSingleResult();
-
-		model.addAttribute("deptName", dept.getDeptName());
-
 		return "regist/regist_check";
 	}
 
@@ -70,11 +85,8 @@ public class RegistrationController {
 		// 부서 ID를 기준으로 Department 엔티티를 생성해 연동
 		//Why? Integer deptId를 Department 객체로 바꿔서 넣어주는 처리가 필요
 		//그렇지않으면 department는 null 상태가 되고, 결국 DB의 NOT NULL 제약을 위반
-		//		Department dept = new Department();
-		//		dept.setDeptId(empForm.getDeptId());
-		//		employee.setDepartment(dept);
-
-		Department dept = entityManager.find(Department.class, empForm.getDeptId());
+		Department dept = new Department();
+		dept.setDeptId(empForm.getDeptId());
 		employee.setDepartment(dept);
 
 		// データベースに保存
