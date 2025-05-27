@@ -11,6 +11,7 @@
 	 <!-- class名とボタンの変更は行なわないこと。-->
 	 
 	<div class="update">
+	
 		<form th:action="@{/regist/update}" method="post" th:object="${empForm}">
 			
 			<!--입력 오류에 대한 정보를 가져옴, #fields라는 기본 객체를 사용하여 
@@ -25,6 +26,7 @@
 				<div class="label">パスワード：</div>
 				<div class="input">
 					<input type="password" th:field="*{empPass}" />
+					<span th:errors="*{empPass}"></span>
 				</div>
 			</div>
 			<div class="form">

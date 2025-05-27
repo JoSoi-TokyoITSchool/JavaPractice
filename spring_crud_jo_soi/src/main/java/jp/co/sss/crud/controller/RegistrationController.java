@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import jakarta.persistence.EntityManager;
 import jakarta.validation.Valid;
 import jp.co.sss.crud.entity.Department;
 import jp.co.sss.crud.entity.Employee;
@@ -22,9 +21,6 @@ public class RegistrationController {
 	@Autowired
 	EmployeeRepository employeeRepository;
 
-	@Autowired
-	EntityManager entityManager;
-
 	/**
 	 * 社員登録入力画面を表示する 
 	 * 직원 등록 입력 화면을 표시
@@ -35,6 +31,12 @@ public class RegistrationController {
 		form.setGender(1); // 男性を初期値にする
 		form.setAuthority(1); // 権限を初期値にする
 		model.addAttribute("empForm", form);
+		return "regist/regist_input";
+	}
+
+	@PostMapping("/regist/input")
+	public String registInput2(Model model, EmployeeForm empForm) {
+		model.addAttribute("empForm", empForm);
 		return "regist/regist_input";
 	}
 
@@ -53,15 +55,15 @@ public class RegistrationController {
 	//	}
 
 	@PostMapping("/regist/update")
-	public String registUpdate(@Valid @ModelAttribute EmployeeForm empForm, BindingResult result, Model model) {
+	public String registUpdate(@Valid @ModelAttribute("empForm") EmployeeForm empForm, BindingResult result,
+			Model model) {
 		// 로그로 에러 확인
 		if (result.hasErrors()) {
-			System.out.println("💥 검증 오류 발생!");
-			result.getFieldErrors().forEach(error -> {
-				System.out.println("필드: " + error.getField());
-				System.out.println("메시지: " + error.getDefaultMessage());
-			});
-
+			//			System.out.println("💥 검증 오류 발생!");
+			//			result.getFieldErrors().forEach(error -> {
+			//				System.out.println("필드: " + error.getField());
+			//				System.out.println("메시지: " + error.getDefaultMessage());
+			//			});
 			model.addAttribute("empForm", empForm);
 			return "regist/regist_input";
 		}
@@ -75,7 +77,7 @@ public class RegistrationController {
 	 * 최종 등록 처리
 	 */
 	@PostMapping("/regist/complete")
-	public String registComplete(@ModelAttribute EmployeeForm empForm, Model model) {
+	public String registComplete(@ModelAttribute EmployeeForm empForm) {
 		Employee employee = new Employee();
 		// empFormの値をEmployeeエンティティへコピー（empIdは自動採番のため除外）
 		// empForm의 필드 값을 employee(엔티티)로 복사 (empId는 자동 증가이므로 제외)

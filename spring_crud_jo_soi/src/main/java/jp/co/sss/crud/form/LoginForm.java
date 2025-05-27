@@ -5,11 +5,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class LoginForm {
-	
+
 	/** 社員ID */
+	@NotNull
+	@Max(99999)
 	private Integer empId;
 
 	/** パスワード */
+	@NotBlank
 	private String empPass;
 
 	/**

@@ -13,7 +13,7 @@ public class EmployeeForm {
 
 	/** パスワード */
 	@NotBlank
-	@Size(max = 16)
+	@Size(min = 1, max = 16)
 	private String empPass;
 	/*
 	1.비밀번호 미입력시 
@@ -29,7 +29,7 @@ public class EmployeeForm {
 
 	/** 社員名 */
 	@NotBlank
-	@Size(max = 30)
+	@Size(min = 1, max = 30)
 	private String empName;
 	/*
 	1.사원이름 미입력시
@@ -42,7 +42,7 @@ public class EmployeeForm {
 
 	/** 住所 */
 	@NotBlank
-	@Size(max = 60)
+	@Size(min = 1, max = 60)
 	private String address;
 	/*
 	1.주소 미입력시
